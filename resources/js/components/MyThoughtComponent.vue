@@ -19,18 +19,14 @@ export default {
 
     data(){
         return {
-            thoughts: [
-            {
-                id: 1,
-                'description': 'abc',
-                'created_at': '17/07/2020'
-            }
-            ]
+            thoughts: []
         }
     },
 
     mounted() {
-        console.log('Component mounted.')
+        axios.get('/thoughts').then((response) => {
+            this.thoughts = response.data;
+        });
     },
 
     methods:{

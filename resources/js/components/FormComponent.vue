@@ -32,13 +32,20 @@ export default {
 
     methods:{
         newThought(){
-            let thought = {
-                id: 2,
-                description: this.description,
-                created_at: '11/11/1111'
+            const params = {
+                description: this.description
             };
-            this.$emit('new', thought);
+            // axios.post('/thoughts',params).then((response) => console.log(response));
+            // let thought = {
+            //     id: 2,
+            //     description: this.description,
+            //     created_at: '11/11/1111'
+            // };
             this.description = '';
+            axios.post('/thoughts',params).then((response) => {
+                const thought = response.data;
+                this.$emit('new', thought);
+            });
             
         }
     },
